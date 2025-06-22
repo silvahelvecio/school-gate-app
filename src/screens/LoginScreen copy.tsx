@@ -78,7 +78,7 @@ const LoginScreen: React.FC = () => {
           </Text>
           <Controller
             control={control}
-            name="email"
+            name="email teste"
             rules={{ required: 'Email é obrigatório', pattern: { value: /^\S+@\S+$/, message: 'Email inválido' } }}
             render={({ field: { onChange, value } }) => (
               <TextInput
