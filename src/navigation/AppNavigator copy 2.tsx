@@ -2,6 +2,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Button } from 'react-native-paper';
+import GradientWrapper from '../../components/GradientWrapper'; // Importar o wrapper
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MonitorScreen from '../screens/Monitor';
 import EscolaScreen from '../screens/Escola';
@@ -13,28 +14,23 @@ const Tab = createBottomTabNavigator();
 
 export default function AppNavigator() {
   const handleLogout = () => {
+    // Lógica para logout
     console.log("Logout");
+    // Redirecionar ou realizar logout
   };
 
   return (
     <NavigationContainer>
       <Tab.Navigator
         screenOptions={({ route }) => ({
-          tabBarIcon: ({ color, size, focused }) => {
+          tabBarIcon: ({ color, size }) => {
             let iconName = 'help';
             if (route.name === 'Monitor') iconName = 'home';
             else if (route.name === 'Escola') iconName = 'school';
             else if (route.name === 'Aluno') iconName = 'person';
             else if (route.name === 'Usuário') iconName = 'settings';
 
-            return (
-              <Ionicons 
-                name={iconName} 
-                color={color} 
-                size={size} 
-                style={{ transform: focused ? [{ scale: 1.1 }] : [{ scale: 1 }] }} // Leve efeito de escala
-              />
-            );
+            return <Ionicons name={iconName} color={color} size={size} />;
           },
           headerRight: () => (
             <Button
@@ -45,24 +41,43 @@ export default function AppNavigator() {
               Sair
             </Button>
           ),
-          tabBarActiveTintColor: '#4B5563', // Cor suave para ícone ativo
-          tabBarInactiveTintColor: '#9CA3AF', // Cor suave para ícone inativo
-          tabBarStyle: { 
-            height: 60, 
-            paddingBottom: 5, 
-            backgroundColor: 'rgba(255, 255, 255, 0.9)', // Fundo semi-transparente
-            elevation: 5, // Sombra no Android
-            shadowColor: '#000', // Cor da sombra no iOS
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.1,
-            shadowRadius: 4,
-          },
+          tabBarActiveTintColor: '#FFFFFF',
+          tabBarInactiveTintColor: '#D1D5DB',
+          tabBarStyle: { height: 60, paddingBottom: 5 },
         })}
       >
-        <Tab.Screen name="Monitor" component={MonitorScreen} options={{ headerTitle: 'Monitoramento' }}  />
-        <Tab.Screen name="Escola" component={EscolaScreen}  />
-        <Tab.Screen name="Aluno" component={AlunoScreen}  />
-        <Tab.Screen name="Usuário" component={UsuarioScreen} options={{ tabBarLabel: 'Usuário' }} />
+        <Tab.Screen 
+          name="Monitor" 
+          component={() => (
+            <GradientWrapper>
+              <MonitorScreen />
+            </GradientWrapper>
+          )} 
+        />
+        <Tab.Screen 
+          name="Escola" 
+          component={() => (
+            <GradientWrapper>
+              <EscolaScreen />
+            </GradientWrapper>
+          )}
+        />
+        <Tab.Screen 
+          name="Aluno" 
+          component={() => (
+            <GradientWrapper>
+              <AlunoScreen />
+            </GradientWrapper>
+          )}
+        />
+        <Tab.Screen 
+          name="Usuário" 
+          component={() => (
+            <GradientWrapper>
+              <UsuarioScreen />
+            </GradientWrapper>
+          )}
+        />
       </Tab.Navigator>
     </NavigationContainer>
   );

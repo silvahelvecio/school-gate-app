@@ -4,9 +4,7 @@ import { SafeAreaView, StyleSheet } from 'react-native';
 import { AuthProvider, useAuth } from './src/context/AuthContext';
 import LoginScreen from './src/screens/LoginScreen';
 import SignInScreen from './src/screens/SignInScreen';
-import HomeScreen from './src/screens/HomeScreen';
 import AppNavigator from './src/navigation/AppNavigator';
-
 
 type ScreenType = 'Login' | 'SignIn' | 'Home';
 
@@ -14,6 +12,7 @@ const AppContent: React.FC = () => {
   const { currentScreen } = useAuth();
 
   const renderScreen = (screen: ScreenType) => {
+    return <AppNavigator />;
     switch (screen) {
       case 'Login':
         return <LoginScreen />;
@@ -22,7 +21,6 @@ const AppContent: React.FC = () => {
       case 'Home':
         return <AppNavigator />;
       default:
-        console.warn(`Unknown screen: ${screen}`);
         return <LoginScreen />; // Fallback to LoginScreen
     }
   };

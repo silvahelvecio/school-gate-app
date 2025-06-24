@@ -4,7 +4,7 @@ import { PaperProvider, Button } from 'react-native-paper';
 import { logOut } from '../services/firebase';
 import { useAuth } from '../context/AuthContext';
 
-const HomeScreen: React.FC = () => {
+const UsuarioScreen: React.FC = () => {
   const { currentUser, setCurrentScreen } = useAuth();
   
 
@@ -36,4 +36,4 @@ const HomeScreen: React.FC = () => {
   );
 };
 
-export default HomeScreen;
+export default UsuarioScreen;

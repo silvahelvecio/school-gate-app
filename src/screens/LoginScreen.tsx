@@ -67,6 +67,12 @@ const LoginScreen: React.FC = () => {
   return (
     <PaperProvider>
       <View className="flex-1 px-5 justify-center">
+        {/* Painel Sinal Verde Escolar */}
+        <View className="bg-green-200 border-2 border-green-600 rounded-lg shadow-lg p-6 mb-5 text-center" style={{ marginTop: '10%' }}>
+          <Text className="text-6xl text-white mb-2">✅</Text>
+          <Text className="text-green-800 text-2xl font-bold">Sinal Verde Escolar</Text>
+        </View>
+
         <Animated.View
           style={{
             opacity: fadeAnim,

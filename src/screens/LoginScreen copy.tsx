@@ -66,19 +66,18 @@ const LoginScreen: React.FC = () => {
 
   return (
     <PaperProvider>
-      <View style={{ flex: 1, padding: 20, justifyContent: 'center' }}>
+      <View className="flex-1 px-5 justify-center">
         <Animated.View
           style={{
             opacity: fadeAnim,
             transform: [{ translateY: offsetAnim }],
           }}
+          className="w-full"
         >
-          <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 16, textAlign: 'center' }}>
-            Login
-          </Text>
+          <Text className="text-2xl font-bold mb-4 text-center">Login</Text>
           <Controller
             control={control}
-            name="email teste"
+            name="email"
             rules={{ required: 'Email é obrigatório', pattern: { value: /^\S+@\S+$/, message: 'Email inválido' } }}
             render={({ field: { onChange, value } }) => (
               <TextInput
@@ -86,11 +85,11 @@ const LoginScreen: React.FC = () => {
                 value={value}
                 onChangeText={onChange}
                 error={!!errors.email}
-                style={{ marginBottom: 8 }}
+                className="mb-2"
               />
             )}
           />
-          {errors.email && <Text style={{ color: 'red' }}>{errors.email.message}</Text>}
+          {errors.email && <Text className="text-red-500 mb-2">{errors.email.message}</Text>}
           <Controller
             control={control}
             name="password"
@@ -102,20 +101,17 @@ const LoginScreen: React.FC = () => {
                 onChangeText={onChange}
                 secureTextEntry
                 error={!!errors.password}
-                style={{ marginBottom: 8 }}
+                className="mb-2"
               />
             )}
           />
-          {errors.password && <Text style={{ color: 'red' }}>{errors.password.message}</Text>}
+          {errors.password && <Text className="text-red-500 mb-2">{errors.password.message}</Text>}
           <Button
             mode="contained"
             onPress={handleSubmit(onSubmit)}
             loading={loading}
-            style={{
-              backgroundColor: '#6B46C1',
-              marginBottom: 16,
-              ...(Platform.OS === 'web' ? { boxShadow: '0px 2px 4px rgba(0,0,0,0.1)' } : { elevation: 2 }),
-            }}
+            className="bg-purple-600 mb-4 rounded-md"
+            style={Platform.OS === 'web' ? { shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.1, shadowRadius: 4 } : { elevation: 2 }}
             labelStyle={{ color: 'white' }}
           >
             Entrar
@@ -123,7 +119,7 @@ const LoginScreen: React.FC = () => {
           <Button
             mode="text"
             onPress={() => setCurrentScreen('SignIn')}
-            style={{ marginBottom: 8 }}
+            className="mb-2"
           >
             Criar conta
           </Button>
